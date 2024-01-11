@@ -23,6 +23,12 @@ export default function MyMap() {
   const onEachCountry = (country, layer) => {
     const countryName = country.properties.ADMIN;
 
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    layer.options.fillColor = `rgb(${red}, ${green}, ${blue})`;
+
     layer.bindPopup(countryName);
     layer.on({
       click: changeCountryColor,
