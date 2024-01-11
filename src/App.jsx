@@ -1,13 +1,7 @@
-import { useState } from 'react';
+import MyMap from './components/MyMap';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>Hello</h1>
-    </>
-  );
+  return <MyMap />;
 }
 
 export default App;
