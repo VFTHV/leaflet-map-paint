@@ -6,6 +6,7 @@ import './MyMap.css';
 
 export default function MyMap() {
   const [fillColor, setFillColor] = useState('#00FF00');
+
   const countryStyle = {
     fillColor: 'green',
     fillOpacity: 1,
@@ -19,30 +20,29 @@ export default function MyMap() {
     fillColorRef.current = fillColor;
   }, [fillColor]);
 
-  const printMessageToConsole = (event) => {
-    console.log('clicked');
-  };
   const changeCountryColor = (event) => {
     const newFillColor = fillColorRef.current;
 
     event.target.setStyle({
-      color: 'green',
       fillColor: newFillColor,
-      fillOpacity: 1,
     });
   };
 
   const onEachCountry = (country, layer) => {
     const countryName = country.properties.ADMIN;
 
-    layer.options.fillOpacity = Math.random();
-
-    // const red = Math.floor(Math.random() * 256);
-    // const green = Math.floor(Math.random() * 256);
-    // const blue = Math.floor(Math.random() * 256);
-    // layer.options.fillColor = `rgb(${red}, ${green}, ${blue})`;
-
     layer.bindPopup(countryName);
+
+    layer.options.fillOpacity = 1;
+    layer.options.fillColor = 'green';
+    layer.options.color = 'black';
+    layer.options.weight = 2;
+
+    layer.options = {
+      ...layer.options,
+      ...countryStyle,
+    };
+
     layer.on({
       click: changeCountryColor,
       // mouseover: changeCountryColor,
@@ -51,9 +51,7 @@ export default function MyMap() {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }} onClick={changeCountryColor}>
-        My Map
-      </h1>
+      <h1 style={{ textAlign: 'center' }}>My Map</h1>
       <MapContainer
         style={{
           height: '80vh',
