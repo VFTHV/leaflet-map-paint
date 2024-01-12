@@ -51,6 +51,22 @@ export default function MyMap() {
 
   return (
     <div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <label>
+          Choose color for country:
+          <input
+            type="color"
+            value={fillColor}
+            onChange={(e) => setFillColor(e.target.value)}
+          />
+        </label>
+      </div>
       <h1 style={{ textAlign: 'center' }}>My Map</h1>
       <MapContainer
         style={{
@@ -65,11 +81,6 @@ export default function MyMap() {
           onEachFeature={onEachCountry}
         />
       </MapContainer>
-      <input
-        type="color"
-        value={fillColor}
-        onChange={(e) => setFillColor(e.target.value)}
-      />
     </div>
   );
 }
